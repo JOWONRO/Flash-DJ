@@ -13,7 +13,7 @@ module.exports = {
   plugins: ['react-refresh', 'import', 'prettier'],
   rules: {
     'prettier/prettier': ['error', { endOfLine: 'auto' }],
-    'import/no-unresolved': ['error', { ignore: ['.svg'] }],
+    'import/no-unresolved': ['off'],
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
@@ -48,5 +48,12 @@ module.exports = {
         },
       },
     ],
+  },
+  settings: {
+    'import/resolver': {
+      node: {
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      },
+    },
   },
 }

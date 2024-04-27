@@ -1,3 +1,5 @@
+import path from 'path'
+
 import react from '@vitejs/plugin-react-swc'
 import autoprefixer from 'autoprefixer'
 import cssnanoPlugin from 'cssnano'
@@ -9,6 +11,11 @@ export default defineConfig({
   css: {
     postcss: {
       plugins: [autoprefixer(), cssnanoPlugin()],
+    },
+  },
+  resolve: {
+    alias: {
+      '@src': path.resolve(__dirname, './src'),
     },
   },
 })
