@@ -16,8 +16,6 @@ const useAudioSource = (src?: string) => {
   const [playbackTime, setPlaybackTime] = useState(0)
 
   const audioHandler = {
-    isPlaying,
-    setIsPlaying,
     initAudio: async () => {
       const audioContext = new AudioContext()
       const audioResponse = await fetch(src || exampleAudio)
@@ -56,6 +54,8 @@ const useAudioSource = (src?: string) => {
   }
 
   return {
+    audioContext,
+    isPlaying,
     controllers,
     audioHandler,
   }
