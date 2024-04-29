@@ -10,7 +10,7 @@ export default defineConfig({
   plugins: [react()],
   css: {
     postcss: {
-      plugins: [autoprefixer(), cssnanoPlugin()],
+      plugins: [autoprefixer() as never, cssnanoPlugin() as never],
     },
   },
   resolve: {
