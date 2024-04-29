@@ -2,13 +2,19 @@ import { useState } from 'react'
 
 import useFilterBandpassController from '@src/controllers/useFilterBandpassController'
 import useFilterHighpassController from '@src/controllers/useFilterHighpassController'
+import useFilterHighshelfController from '@src/controllers/useFilterHighshelfController'
 import useFilterLowpassController from '@src/controllers/useFilterLowpassController'
+import useFilterLowshelfController from '@src/controllers/useFilterLowshelfController'
+import useFilterPeakingController from '@src/controllers/useFilterPeakingController'
 import useGainController from '@src/controllers/useGainController'
 
 const useControllers = () => {
   const [context, setContext] = useState<AudioContext>()
 
   const controllers = [
+    useFilterPeakingController(),
+    useFilterHighshelfController(),
+    useFilterLowshelfController(),
     useFilterBandpassController(),
     useFilterLowpassController(),
     useFilterHighpassController(),
