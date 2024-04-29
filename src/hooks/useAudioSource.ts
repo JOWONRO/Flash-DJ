@@ -51,6 +51,15 @@ const useAudioSource = (src?: string) => {
       sourceNode.onended = null
       sourceNode.stop()
     },
+    stop: () => {
+      if (!sourceNode) return
+      if (isPlaying) {
+        sourceNode.stop()
+        return
+      }
+      setPlaybackTime(0)
+      setStartTime(0)
+    },
   }
 
   return {
