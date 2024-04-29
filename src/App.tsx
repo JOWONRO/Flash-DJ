@@ -3,8 +3,13 @@ import styled from 'styled-components'
 import useAudioSource from './hooks/useAudioSource'
 
 const App = () => {
-  const { audioContext, isPlaying, controllers, audioHandler } =
-    useAudioSource()
+  const {
+    audioContext,
+    isPlaying,
+    controllers,
+    controllersHandler,
+    audioHandler,
+  } = useAudioSource()
 
   const handleAudio = () => {
     if (isPlaying) {
@@ -25,6 +30,12 @@ const App = () => {
         </button>
         <button onClick={audioHandler.stop} disabled={!audioContext}>
           stop
+        </button>
+        <button
+          onClick={controllersHandler.resetControllers}
+          disabled={!audioContext}
+        >
+          reset controllers
         </button>
       </StyledHeader>
       {controllers.map(controller => (
@@ -60,7 +71,8 @@ const StyledHeader = styled.div`
   align-items: center;
   border-bottom: 2px solid #ccc;
   button {
-    width: 100px;
+    padding: 0 12px;
+    min-width: 100px;
     height: 24px;
   }
 `

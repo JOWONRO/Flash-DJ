@@ -8,7 +8,7 @@ const useFilterPeakingController = () => {
       id: 'filter-peaking-center',
       min: 20,
       max: 12000,
-      defaultValue: 12000,
+      defaultValue: 1000,
     },
     {
       id: 'filter-peaking-gain',
@@ -40,12 +40,17 @@ const useFilterPeakingController = () => {
         biquadFilter.Q.value = value
       },
     },
+    reset: (filter?: BiquadFilterNode) => {
+      const node = filter ?? biquadFilter
+      if (!node) return
+      node.frequency.value = config[0].defaultValue
+      node.gain.value = config[1].defaultValue
+      node.Q.value = config[2].defaultValue
+    },
     initialize: (context: AudioContext) => {
       const filter = context.createBiquadFilter()
       filter.type = 'peaking'
-      filter.frequency.value = config[0].defaultValue
-      filter.gain.value = config[1].defaultValue
-      filter.Q.value = config[2].defaultValue
+      handler.reset(filter)
       setBiquadFilter(filter)
     },
     connect: (node: AudioNode) => {

@@ -14,16 +14,20 @@ const useGainController = () => {
   ]
 
   const handler = {
-    node: gainNode,
     onChange: {
       [config[0].id]: (value: number) => {
         if (!gainNode) return
         gainNode.gain.value = value
       },
     },
+    reset: (gain?: GainNode) => {
+      const node = gain ?? gainNode
+      if (!node) return
+      node.gain.value = config[0].defaultValue
+    },
     initialize: (context: AudioContext) => {
       const gain = context.createGain()
-      gain.gain.value = config[0].defaultValue
+      handler.reset(gain)
       setGainNode(gain)
     },
     connect: (node: AudioNode) => {

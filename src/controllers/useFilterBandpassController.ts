@@ -8,7 +8,7 @@ const useFilterBandpassController = () => {
       id: 'filter-bandpass-center',
       min: 100,
       max: 10000,
-      defaultValue: 5000,
+      defaultValue: 1000,
     },
     {
       id: 'filter-bandpass-q',
@@ -30,11 +30,16 @@ const useFilterBandpassController = () => {
         biquadFilter.Q.value = value
       },
     },
+    reset: (filter?: BiquadFilterNode) => {
+      const node = filter ?? biquadFilter
+      if (!node) return
+      node.frequency.value = config[0].defaultValue
+      node.Q.value = config[1].defaultValue
+    },
     initialize: (context: AudioContext) => {
       const filter = context.createBiquadFilter()
       filter.type = 'bandpass'
-      filter.frequency.value = config[0].defaultValue
-      filter.Q.value = config[1].defaultValue
+      handler.reset(filter)
       setBiquadFilter(filter)
     },
     connect: (node: AudioNode) => {

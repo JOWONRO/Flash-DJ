@@ -1,20 +1,21 @@
 import { useState } from 'react'
 
-const useFilterLowshelfController = () => {
+const useFilterNotchController = () => {
   const [biquadFilter, setBiquadFilter] = useState<BiquadFilterNode>()
 
   const config = [
     {
-      id: 'filter-lowshelf-cutoff',
+      id: 'filter-notch-center',
       min: 20,
-      max: 2000,
-      defaultValue: 20,
+      max: 12000,
+      defaultValue: 1000,
     },
     {
-      id: 'filter-lowshelf-gain',
-      min: -20,
-      max: 20,
-      defaultValue: 0,
+      id: 'filter-notch-q',
+      min: 0.1,
+      max: 10,
+      step: 0.01,
+      defaultValue: 10,
     },
   ]
 
@@ -26,18 +27,18 @@ const useFilterLowshelfController = () => {
       },
       [config[1].id]: (value: number) => {
         if (!biquadFilter) return
-        biquadFilter.gain.value = value
+        biquadFilter.Q.value = value
       },
     },
     reset: (filter?: BiquadFilterNode) => {
       const node = filter ?? biquadFilter
       if (!node) return
       node.frequency.value = config[0].defaultValue
-      node.gain.value = config[1].defaultValue
+      node.Q.value = config[1].defaultValue
     },
     initialize: (context: AudioContext) => {
       const filter = context.createBiquadFilter()
-      filter.type = 'lowshelf'
+      filter.type = 'notch'
       handler.reset(filter)
       setBiquadFilter(filter)
     },
@@ -53,4 +54,4 @@ const useFilterLowshelfController = () => {
   }
 }
 
-export default useFilterLowshelfController
+export default useFilterNotchController

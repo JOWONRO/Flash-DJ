@@ -29,11 +29,16 @@ const useFilterHighshelfController = () => {
         biquadFilter.gain.value = value
       },
     },
+    reset: (filter?: BiquadFilterNode) => {
+      const node = filter ?? biquadFilter
+      if (!node) return
+      node.frequency.value = config[0].defaultValue
+      node.gain.value = config[1].defaultValue
+    },
     initialize: (context: AudioContext) => {
       const filter = context.createBiquadFilter()
       filter.type = 'highshelf'
-      filter.frequency.value = config[0].defaultValue
-      filter.gain.value = config[1].defaultValue
+      handler.reset(filter)
       setBiquadFilter(filter)
     },
     connect: (node: AudioNode) => {

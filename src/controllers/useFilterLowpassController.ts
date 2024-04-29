@@ -18,10 +18,15 @@ const useFilterLowpassController = () => {
         biquadFilter && (biquadFilter.frequency.value = value)
       },
     },
+    reset: (filter?: BiquadFilterNode) => {
+      const node = filter ?? biquadFilter
+      if (!node) return
+      node.frequency.value = config[0].defaultValue
+    },
     initialize: (context: AudioContext) => {
       const filter = context.createBiquadFilter()
       filter.type = 'lowpass'
-      filter.frequency.value = config[0].defaultValue
+      handler.reset(filter)
       setBiquadFilter(filter)
     },
     connect: (node: AudioNode) => {

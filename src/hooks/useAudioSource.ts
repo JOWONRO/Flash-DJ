@@ -66,6 +66,7 @@ const useAudioSource = (src?: string) => {
     audioContext,
     isPlaying,
     controllers,
+    controllersHandler,
     audioHandler,
   }
 }

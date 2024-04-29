@@ -5,6 +5,7 @@ import useFilterHighpassController from '@src/controllers/useFilterHighpassContr
 import useFilterHighshelfController from '@src/controllers/useFilterHighshelfController'
 import useFilterLowpassController from '@src/controllers/useFilterLowpassController'
 import useFilterLowshelfController from '@src/controllers/useFilterLowshelfController'
+import useFilterNotchController from '@src/controllers/useFilterNotchController'
 import useFilterPeakingController from '@src/controllers/useFilterPeakingController'
 import useGainController from '@src/controllers/useGainController'
 
@@ -12,6 +13,7 @@ const useControllers = () => {
   const [context, setContext] = useState<AudioContext>()
 
   const controllers = [
+    useFilterNotchController(),
     useFilterPeakingController(),
     useFilterHighshelfController(),
     useFilterLowshelfController(),
@@ -41,6 +43,9 @@ const useControllers = () => {
           currentNode.connect(context.destination)
         }
       })
+    },
+    resetControllers: () => {
+      controllers.forEach(controller => controller.handler.reset())
     },
   }
 
