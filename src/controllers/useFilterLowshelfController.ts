@@ -16,8 +16,8 @@ const option: ControllerOption<BiquadFilterNode> = {
     },
     {
       id: 'filter-lowshelf-gain',
-      min: -20,
-      max: 20,
+      min: -15,
+      max: 15,
       defaultValue: 0,
       onChange: (node, value) => {
         node.gain.value = value

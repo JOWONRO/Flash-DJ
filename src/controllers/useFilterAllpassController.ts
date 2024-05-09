@@ -3,7 +3,7 @@ import useController, { ControllerOption } from './useController'
 const option: ControllerOption<BiquadFilterNode> = {
   config: [
     {
-      id: 'filter-notch-center',
+      id: 'filter-allpass-center',
       min: 20,
       max: 20000,
       defaultValue: 1000,
@@ -15,9 +15,9 @@ const option: ControllerOption<BiquadFilterNode> = {
       },
     },
     {
-      id: 'filter-notch-q',
+      id: 'filter-allpass-q',
       min: 0.1,
-      max: 50,
+      max: 10,
       step: 0.01,
       defaultValue: 10,
       onChange: (node: BiquadFilterNode, value: number) => {
@@ -30,11 +30,11 @@ const option: ControllerOption<BiquadFilterNode> = {
   ],
   initialize: (context: AudioContext) => {
     const filter = context.createBiquadFilter()
-    filter.type = 'notch'
+    filter.type = 'allpass'
     return filter
   },
 }
 
-const useFilterNotchController = () => useController(option)
+const useFilterAllpassController = () => useController(option)
 
-export default useFilterNotchController
+export default useFilterAllpassController

@@ -5,7 +5,7 @@ const option: ControllerOption<BiquadFilterNode> = {
     {
       id: 'filter-peaking-center',
       min: 20,
-      max: 12000,
+      max: 20000,
       defaultValue: 1000,
       onChange: (node: BiquadFilterNode, value: number) => {
         node.frequency.value = value
@@ -16,8 +16,8 @@ const option: ControllerOption<BiquadFilterNode> = {
     },
     {
       id: 'filter-peaking-gain',
-      min: -20,
-      max: 20,
+      min: -15,
+      max: 15,
       defaultValue: 0,
       onChange: (node: BiquadFilterNode, value: number) => {
         node.gain.value = value

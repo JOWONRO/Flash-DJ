@@ -5,8 +5,8 @@ const option: ControllerOption<BiquadFilterNode> = {
     {
       id: 'filter-highshelf-cutoff',
       min: 2000,
-      max: 12000,
-      defaultValue: 12000,
+      max: 15000,
+      defaultValue: 15000,
       onChange: (node, value) => {
         node.frequency.value = value
       },

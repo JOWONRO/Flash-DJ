@@ -2,6 +2,21 @@ import styled from 'styled-components'
 
 import useAudioSource from './hooks/useAudioSource'
 
+/**
+ * <시각화 고민>
+ *
+ * - 블러 효과
+ * - 가우시안 효과
+ * - 파랑빨강 분리되는 효과
+ * - 틸트 효과
+ * - 회전하는 효과
+ * - 흑백 효과
+ * - 글리치 효과
+ * - 빛 혼합(막 반짝이는?) 효과
+ * - 대비 효과
+ * - 스케일 효과
+ */
+
 const App = () => {
   const {
     audioContext,
