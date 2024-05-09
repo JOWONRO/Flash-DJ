@@ -1,14 +1,18 @@
-import { useState } from 'react'
+import useController, { ControllerOption } from './useController'
 
-const useFilterBandpassController = () => {
-  const [biquadFilter, setBiquadFilter] = useState<BiquadFilterNode>()
-
-  const config = [
+const option: ControllerOption<BiquadFilterNode> = {
+  config: [
     {
       id: 'filter-bandpass-center',
       min: 100,
       max: 10000,
       defaultValue: 1000,
+      onChange: (node, value) => {
+        node.frequency.value = value
+      },
+      onReset: node => {
+        node.frequency.value = option.config[0].defaultValue
+      },
     },
     {
       id: 'filter-bandpass-q',
@@ -16,42 +20,21 @@ const useFilterBandpassController = () => {
       max: 10,
       step: 0.01,
       defaultValue: 0,
-    },
-  ]
-
-  const handler = {
-    onChange: {
-      [config[0].id]: (value: number) => {
-        if (!biquadFilter) return
-        biquadFilter.frequency.value = value
+      onChange: (node, value) => {
+        node.Q.value = value
       },
-      [config[1].id]: (value: number) => {
-        if (!biquadFilter) return
-        biquadFilter.Q.value = value
+      onReset: node => {
+        node.Q.value = option.config[1].defaultValue
       },
     },
-    reset: (filter?: BiquadFilterNode) => {
-      const node = filter ?? biquadFilter
-      if (!node) return
-      node.frequency.value = config[0].defaultValue
-      node.Q.value = config[1].defaultValue
-    },
-    initialize: (context: AudioContext) => {
-      const filter = context.createBiquadFilter()
-      filter.type = 'bandpass'
-      handler.reset(filter)
-      setBiquadFilter(filter)
-    },
-    connect: (node: AudioNode) => {
-      biquadFilter && node.connect(biquadFilter)
-    },
-  }
-
-  return {
-    node: biquadFilter,
-    config,
-    handler,
-  }
+  ],
+  initialize: context => {
+    const filter = context.createBiquadFilter()
+    filter.type = 'bandpass'
+    return filter
+  },
 }
+
+const useFilterBandpassController = () => useController(option)
 
 export default useFilterBandpassController

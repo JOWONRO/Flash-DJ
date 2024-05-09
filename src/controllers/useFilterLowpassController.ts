@@ -1,44 +1,27 @@
-import { useState } from 'react'
+import useController, { ControllerOption } from './useController'
 
-const useFilterLowpassController = () => {
-  const [biquadFilter, setBiquadFilter] = useState<BiquadFilterNode>()
-
-  const config = [
+const option: ControllerOption<BiquadFilterNode> = {
+  config: [
     {
       id: 'filter-lowpass',
       min: 500,
       max: 12000,
       defaultValue: 12000,
-    },
-  ]
-
-  const handler = {
-    onChange: {
-      [config[0].id]: (value: number) => {
-        biquadFilter && (biquadFilter.frequency.value = value)
+      onChange: (node, value) => {
+        node.frequency.value = value
+      },
+      onReset: node => {
+        node.frequency.value = option.config[0].defaultValue
       },
     },
-    reset: (filter?: BiquadFilterNode) => {
-      const node = filter ?? biquadFilter
-      if (!node) return
-      node.frequency.value = config[0].defaultValue
-    },
-    initialize: (context: AudioContext) => {
-      const filter = context.createBiquadFilter()
-      filter.type = 'lowpass'
-      handler.reset(filter)
-      setBiquadFilter(filter)
-    },
-    connect: (node: AudioNode) => {
-      biquadFilter && node.connect(biquadFilter)
-    },
-  }
-
-  return {
-    node: biquadFilter,
-    config,
-    handler,
-  }
+  ],
+  initialize: context => {
+    const filter = context.createBiquadFilter()
+    filter.type = 'lowpass'
+    return filter
+  },
 }
+
+const useFilterLowpassController = () => useController(option)
 
 export default useFilterLowpassController

@@ -1,45 +1,27 @@
-import { useState } from 'react'
+import useController, { ControllerOption } from './useController'
 
-const useGainController = () => {
-  const [gainNode, setGainNode] = useState<GainNode>()
-
-  const config = [
+const option: ControllerOption<GainNode> = {
+  config: [
     {
       id: 'gain',
       min: 0,
       max: 2,
       step: 0.01,
       defaultValue: 1,
-    },
-  ]
-
-  const handler = {
-    onChange: {
-      [config[0].id]: (value: number) => {
-        if (!gainNode) return
-        gainNode.gain.value = value
+      onChange: (node, value) => {
+        node.gain.value = value
+      },
+      onReset: node => {
+        node.gain.value = option.config[0].defaultValue
       },
     },
-    reset: (gain?: GainNode) => {
-      const node = gain ?? gainNode
-      if (!node) return
-      node.gain.value = config[0].defaultValue
-    },
-    initialize: (context: AudioContext) => {
-      const gain = context.createGain()
-      handler.reset(gain)
-      setGainNode(gain)
-    },
-    connect: (node: AudioNode) => {
-      gainNode && node.connect(gainNode)
-    },
-  }
-
-  return {
-    node: gainNode,
-    config,
-    handler,
-  }
+  ],
+  initialize: (context: AudioContext) => {
+    const gainNode = context.createGain()
+    return gainNode
+  },
 }
+
+const useGainController = () => useController(option)
 
 export default useGainController

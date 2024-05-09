@@ -1,56 +1,39 @@
-import { useState } from 'react'
+import useController, { ControllerOption } from './useController'
 
-const useFilterHighshelfController = () => {
-  const [biquadFilter, setBiquadFilter] = useState<BiquadFilterNode>()
-
-  const config = [
+const option: ControllerOption<BiquadFilterNode> = {
+  config: [
     {
       id: 'filter-highshelf-cutoff',
       min: 2000,
       max: 12000,
       defaultValue: 12000,
+      onChange: (node, value) => {
+        node.frequency.value = value
+      },
+      onReset: node => {
+        node.frequency.value = option.config[0].defaultValue
+      },
     },
     {
       id: 'filter-highshelf-gain',
       min: -20,
       max: 20,
       defaultValue: 0,
-    },
-  ]
-
-  const handler = {
-    onChange: {
-      [config[0].id]: (value: number) => {
-        if (!biquadFilter) return
-        biquadFilter.frequency.value = value
+      onChange: (node, value) => {
+        node.gain.value = value
       },
-      [config[1].id]: (value: number) => {
-        if (!biquadFilter) return
-        biquadFilter.gain.value = value
+      onReset: node => {
+        node.gain.value = option.config[1].defaultValue
       },
     },
-    reset: (filter?: BiquadFilterNode) => {
-      const node = filter ?? biquadFilter
-      if (!node) return
-      node.frequency.value = config[0].defaultValue
-      node.gain.value = config[1].defaultValue
-    },
-    initialize: (context: AudioContext) => {
-      const filter = context.createBiquadFilter()
-      filter.type = 'highshelf'
-      handler.reset(filter)
-      setBiquadFilter(filter)
-    },
-    connect: (node: AudioNode) => {
-      biquadFilter && node.connect(biquadFilter)
-    },
-  }
-
-  return {
-    node: biquadFilter,
-    config,
-    handler,
-  }
+  ],
+  initialize: context => {
+    const filter = context.createBiquadFilter()
+    filter.type = 'highshelf'
+    return filter
+  },
 }
+
+const useFilterHighshelfController = () => useController(option)
 
 export default useFilterHighshelfController

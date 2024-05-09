@@ -48,9 +48,13 @@ const App = () => {
               <input
                 disabled={!audioContext}
                 type="range"
-                {...config}
+                id={config.id}
+                min={config.min}
+                max={config.max}
+                step={config.step}
+                defaultValue={config.defaultValue}
                 onChange={e =>
-                  controller.handler.onChange[config.id](e.target.valueAsNumber)
+                  controller.handler.onChange(config, e.target.valueAsNumber)
                 }
               />
             </StyledDiv>

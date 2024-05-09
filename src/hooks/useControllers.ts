@@ -31,12 +31,12 @@ const useControllers = () => {
     connectControllers: (source: AudioBufferSourceNode) => {
       if (!context) return
       controllers.forEach((controller, idx) => {
-        const currentNode = controller.node
+        const currentNode = controller.audioNode
         if (!currentNode) return
         if (idx === 0) {
           currentNode && source.connect(currentNode)
         } else {
-          const preNode = controllers[idx - 1].node
+          const preNode = controllers[idx - 1].audioNode
           preNode && preNode.connect(currentNode)
         }
         if (idx === controllers.length - 1) {
