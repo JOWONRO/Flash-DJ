@@ -14,7 +14,7 @@ const useConvolverUnit = () => {
     controllers: wetControllers,
     handler: wetHandler,
   } = useGainNode({
-    id: 'Wet',
+    id: 'Convolver-Wet',
     min: 0,
     max: 1,
     step: 0.01,
@@ -25,7 +25,7 @@ const useConvolverUnit = () => {
     controllers: dryControllers,
     handler: dryHandler,
   } = useGainNode({
-    id: 'Dry',
+    id: 'Convolver-Dry',
     min: 0,
     max: 1,
     step: 0.01,

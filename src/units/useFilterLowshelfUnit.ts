@@ -5,26 +5,20 @@ import { UnitHandler, UnitType } from '../types'
 
 const ID = nanoid()
 
-const useFilterPeakingUnit: UnitType = () => {
-  const { audioNode, controllers, handler } = useFilterNode('peaking', {
+const useFilterLowshelfUnit: UnitType = () => {
+  const { audioNode, controllers, handler } = useFilterNode('lowshelf', {
     frequency: {
-      id: 'Filter-Peaking-Center',
+      id: 'Filter-Lowshelf-Frequency',
       min: 100,
-      max: 10000,
-      defaultValue: 1000,
+      max: 1000,
+      defaultValue: 100,
     },
     gain: {
-      id: 'Filter-Peaking-Gain',
+      id: 'Filter-Lowshelf-Gain',
       min: -15,
       max: 15,
-      defaultValue: 0,
-    },
-    q: {
-      id: 'Filter-Peaking-Q',
-      min: 0.5,
-      max: 10,
       step: 0.01,
-      defaultValue: 1,
+      defaultValue: 0,
     },
   })
 
@@ -41,10 +35,10 @@ const useFilterPeakingUnit: UnitType = () => {
   }
 
   return {
-    id: `filter-peaking-${ID}`,
+    id: `filter-Lowshelf-${ID}`,
     controllers: [controllers],
     unitHandler,
   }
 }
 
-export default useFilterPeakingUnit
+export default useFilterLowshelfUnit

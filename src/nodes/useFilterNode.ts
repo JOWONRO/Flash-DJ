@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import useController from '../hooks/useController'
 import useNodeHandler from '../hooks/useNodeHandler'
 import { ControllerOption, NodeReturnType } from '../types'
@@ -18,15 +20,22 @@ const useFilterNode = (
     return filter
   })
 
-  const frequencyController = useController(value => {
-    if (audioNode) audioNode.frequency.value = value
-  }, options.frequency)
-  const qController = useController(value => {
-    if (audioNode) audioNode.Q.value = value
-  }, options.q)
-  const gainController = useController(value => {
-    if (audioNode) audioNode.gain.value = value
-  }, options.gain)
+  const frequencyController = useController(options.frequency)
+  const qController = useController(options.q)
+  const gainController = useController(options.gain)
+
+  useEffect(() => {
+    if (audioNode && frequencyController.value !== undefined)
+      audioNode.frequency.value = frequencyController.value
+  }, [audioNode, frequencyController.value])
+  useEffect(() => {
+    if (audioNode && gainController.value !== undefined)
+      audioNode.gain.value = gainController.value
+  }, [audioNode, gainController.value])
+  useEffect(() => {
+    if (audioNode && qController.value !== undefined)
+      audioNode.Q.value = qController.value
+  }, [audioNode, qController.value])
 
   return {
     audioNode,

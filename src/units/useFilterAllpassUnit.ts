@@ -5,24 +5,18 @@ import { UnitHandler, UnitType } from '../types'
 
 const ID = nanoid()
 
-const useFilterPeakingUnit: UnitType = () => {
-  const { audioNode, controllers, handler } = useFilterNode('peaking', {
+const useFilterAllpassUnit: UnitType = () => {
+  const { audioNode, controllers, handler } = useFilterNode('allpass', {
     frequency: {
-      id: 'Filter-Peaking-Center',
-      min: 100,
-      max: 10000,
+      id: 'Filter-Allpass-Frequency',
+      min: 500,
+      max: 5000,
       defaultValue: 1000,
     },
-    gain: {
-      id: 'Filter-Peaking-Gain',
-      min: -15,
-      max: 15,
-      defaultValue: 0,
-    },
     q: {
-      id: 'Filter-Peaking-Q',
+      id: 'Filter-Allpass-Q',
       min: 0.5,
-      max: 10,
+      max: 5,
       step: 0.01,
       defaultValue: 1,
     },
@@ -41,10 +35,10 @@ const useFilterPeakingUnit: UnitType = () => {
   }
 
   return {
-    id: `filter-peaking-${ID}`,
+    id: `filter-Allpass-${ID}`,
     controllers: [controllers],
     unitHandler,
   }
 }
 
-export default useFilterPeakingUnit
+export default useFilterAllpassUnit

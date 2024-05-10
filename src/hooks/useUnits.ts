@@ -1,6 +1,13 @@
 import { useState } from 'react'
 
 import useConvolverUnit from '@src/units/useConvolverUnit'
+import useFilterAllpassUnit from '@src/units/useFilterAllpassUnit'
+import useFilterBandpassUnit from '@src/units/useFilterBandpassUnit'
+import useFilterHighpassUnit from '@src/units/useFilterHighpassUnit'
+import useFilterHighshelfUnit from '@src/units/useFilterHighshelfUnit'
+import useFilterLowpassUnit from '@src/units/useFilterLowpassUnit'
+import useFilterLowshelfUnit from '@src/units/useFilterLowshelfUnit'
+import useFilterNotchUnit from '@src/units/useFilterNotchUnit'
 import useFilterPeakingUnit from '@src/units/useFilterPeakingUnit'
 import useGainUnit from '@src/units/useGainUnit'
 
@@ -9,15 +16,15 @@ const useUnits = () => {
 
   const units = [
     useConvolverUnit(),
+    useFilterNotchUnit(),
     useFilterPeakingUnit(),
+    useFilterHighshelfUnit(),
+    useFilterLowshelfUnit(),
+    useFilterBandpassUnit(),
+    useFilterAllpassUnit(),
+    useFilterHighpassUnit(),
+    useFilterLowpassUnit(),
     useGainUnit(),
-    // useFilterNotchController(),
-    // useFilterHighshelfController(),
-    // useFilterLowshelfController(),
-    // useFilterBandpassController(),
-    // useFilterLowpassController(),
-    // useFilterHighpassController(),
-    // useGainController(),
   ]
 
   const unitsHandler = {
