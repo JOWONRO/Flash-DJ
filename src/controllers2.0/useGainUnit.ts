@@ -1,5 +1,9 @@
+import { nanoid } from 'nanoid'
+
 import { UnitHandler, UnitType } from './types'
 import useGainNode from './useGainNode'
+
+const ID = nanoid()
 
 const useGainUnit: UnitType = () => {
   const { audioNode, controllers, handler } = useGainNode({
@@ -18,13 +22,12 @@ const useGainUnit: UnitType = () => {
     connect: node => {
       if (!audioNode) return
       node.connect(audioNode)
-      return audioNode // output node
+      return audioNode
     },
   }
 
   return {
-    // inputNode: audioNode,
-    // outputNode: audioNode,
+    id: `gain-${ID}`,
     controllers: [controllers],
     unitHandler,
   }

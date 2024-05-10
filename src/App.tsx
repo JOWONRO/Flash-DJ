@@ -1,4 +1,3 @@
-import { nanoid } from 'nanoid'
 import styled from 'styled-components'
 
 import useAudioSource from './hooks/useAudioSource'
@@ -49,18 +48,18 @@ const App = () => {
       {units.map(unit => (
         <div
           style={{ display: 'flex', flexDirection: 'column' }}
-          key={`unit-${nanoid()}`}
+          key={`unit-${unit.id}`}
         >
           {unit.controllers.map(controller => (
             <StyledController
-              key={`controller-${nanoid()}`}
+              key={`controller-${unit.id}`}
               style={{ display: 'flex' }}
             >
               {controller.map(
                 controlUnit =>
                   controlUnit.option && (
                     <StyledDiv
-                      key={`controlUnit-${nanoid()}`}
+                      key={`controlUnit-${controlUnit.option.id}`}
                       style={{ display: 'flex' }}
                     >
                       <div style={{ minWidth: '130px', textAlign: 'right' }}>

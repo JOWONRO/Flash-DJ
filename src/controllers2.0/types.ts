@@ -25,8 +25,7 @@ export interface UnitHandler {
 }
 
 export type UnitType = () => {
-  // inputNode: NodeHandlerReturnType['audioNode']
-  // outputNode: NodeHandlerReturnType['audioNode']
+  id: string
   controllers: ControllerReturnType[][]
   unitHandler: UnitHandler
 }

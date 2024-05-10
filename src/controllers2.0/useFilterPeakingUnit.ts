@@ -1,5 +1,9 @@
+import { nanoid } from 'nanoid'
+
 import { UnitHandler, UnitType } from './types'
 import useFilterNode from './useFilterNode'
+
+const ID = nanoid()
 
 const useFilterPeakingUnit: UnitType = () => {
   const { audioNode, controllers, handler } = useFilterNode('peaking', {
@@ -32,13 +36,12 @@ const useFilterPeakingUnit: UnitType = () => {
     connect: node => {
       if (!audioNode) return
       node.connect(audioNode)
-      return audioNode // output node
+      return audioNode
     },
   }
 
   return {
-    // inputNode: audioNode,
-    // outputNode: audioNode,
+    id: `filter-peaking-${ID}`,
     controllers: [controllers],
     unitHandler,
   }
