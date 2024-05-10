@@ -1,12 +1,12 @@
 import { useState } from 'react'
 
-import useControllers from './useControllers'
+import useUnits from './useUnits'
 
 const exampleAudio =
   '/src/assets/Trainwreck Of Electro Swing - A Hat In Time Remix.mp3'
 
 const useAudioSource = (src?: string) => {
-  const { controllers, controllersHandler } = useControllers()
+  const { units, unitsHandler } = useUnits()
 
   const [audioContext, setAudioContext] = useState<AudioContext>()
   const [sourceNode, setSourceNode] = useState<AudioBufferSourceNode>()
@@ -22,7 +22,7 @@ const useAudioSource = (src?: string) => {
       const audioArrayBuffer = await audioResponse.arrayBuffer()
       const audioBuffer = await audioContext.decodeAudioData(audioArrayBuffer)
 
-      controllersHandler.initControllers(audioContext)
+      unitsHandler.initUnits(audioContext)
       setAudioContext(audioContext)
       setAudioBuffer(audioBuffer)
     },
@@ -33,7 +33,7 @@ const useAudioSource = (src?: string) => {
       setIsPlaying(true)
       setSourceNode(source)
       setStartTime(audioContext.currentTime)
-      controllersHandler.connectControllers(source)
+      unitsHandler.connectUnits(source)
       source.buffer = audioBuffer
       source.onended = () => {
         setIsPlaying(false)
@@ -65,8 +65,8 @@ const useAudioSource = (src?: string) => {
   return {
     audioContext,
     isPlaying,
-    controllers,
-    controllersHandler,
+    units,
+    unitsHandler,
     audioHandler,
   }
 }

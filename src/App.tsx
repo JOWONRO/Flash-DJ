@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid'
 import styled from 'styled-components'
 
 import useAudioSource from './hooks/useAudioSource'
@@ -18,13 +19,8 @@ import useAudioSource from './hooks/useAudioSource'
  */
 
 const App = () => {
-  const {
-    audioContext,
-    isPlaying,
-    controllers,
-    controllersHandler,
-    audioHandler,
-  } = useAudioSource()
+  const { audioContext, isPlaying, units, unitsHandler, audioHandler } =
+    useAudioSource()
 
   const handleAudio = () => {
     if (isPlaying) {
@@ -46,33 +42,46 @@ const App = () => {
         <button onClick={audioHandler.stop} disabled={!audioContext}>
           stop
         </button>
-        <button
-          onClick={controllersHandler.resetControllers}
-          disabled={!audioContext}
-        >
+        <button onClick={unitsHandler.resetUnits} disabled={!audioContext}>
           reset controllers
         </button>
       </StyledHeader>
-      {controllers.map(controller => (
-        <div style={{ display: 'flex' }} key={controller.config[0].id}>
-          {controller.config.map(config => (
-            <StyledDiv key={config.id}>
-              <div style={{ minWidth: '130px', textAlign: 'right' }}>
-                {config.id}
-              </div>
-              <input
-                disabled={!audioContext}
-                type="range"
-                id={config.id}
-                min={config.min}
-                max={config.max}
-                step={config.step}
-                defaultValue={config.defaultValue}
-                onChange={e =>
-                  controller.handler.onChange(config, e.target.valueAsNumber)
-                }
-              />
-            </StyledDiv>
+      {units.map(unit => (
+        <div
+          style={{ display: 'flex', flexDirection: 'column' }}
+          key={`unit-${nanoid()}`}
+        >
+          {unit.controllers.map(controller => (
+            <StyledController
+              key={`controller-${nanoid()}`}
+              style={{ display: 'flex' }}
+            >
+              {controller.map(
+                controlUnit =>
+                  controlUnit.option && (
+                    <StyledDiv
+                      key={`controlUnit-${nanoid()}`}
+                      style={{ display: 'flex' }}
+                    >
+                      <div style={{ minWidth: '130px', textAlign: 'right' }}>
+                        {controlUnit.option.id}
+                      </div>
+                      <input
+                        disabled={!audioContext}
+                        type="range"
+                        id={controlUnit.option.id}
+                        min={controlUnit.option.min}
+                        max={controlUnit.option.max}
+                        step={controlUnit.option.step}
+                        value={controlUnit.value}
+                        onChange={e =>
+                          controlUnit.handler.onChange(e.target.valueAsNumber)
+                        }
+                      />
+                    </StyledDiv>
+                  ),
+              )}
+            </StyledController>
           ))}
         </div>
       ))}
@@ -95,8 +104,10 @@ const StyledHeader = styled.div`
     height: 24px;
   }
 `
-const StyledDiv = styled.div`
+const StyledController = styled.div`
   border-bottom: 2px solid #ccc;
+`
+const StyledDiv = styled.div`
   height: 72px;
   flex: 1 1 0;
   display: flex;
