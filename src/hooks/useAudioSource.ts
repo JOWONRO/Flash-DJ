@@ -22,7 +22,7 @@ const useAudioSource = (src?: string) => {
       const audioArrayBuffer = await audioResponse.arrayBuffer()
       const audioBuffer = await audioContext.decodeAudioData(audioArrayBuffer)
 
-      unitsHandler.initUnits(audioContext)
+      await unitsHandler.initUnits(audioContext)
       setAudioContext(audioContext)
       setAudioBuffer(audioBuffer)
     },

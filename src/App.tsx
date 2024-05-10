@@ -46,43 +46,43 @@ const App = () => {
         </button>
       </StyledHeader>
       {units.map(unit => (
-        <div
-          style={{ display: 'flex', flexDirection: 'column' }}
-          key={`unit-${unit.id}`}
-        >
-          {unit.controllers.map(controller => (
-            <StyledController
-              key={`controller-${unit.id}`}
-              style={{ display: 'flex' }}
-            >
-              {controller.map(
-                controlUnit =>
-                  controlUnit.option && (
-                    <StyledDiv
-                      key={`controlUnit-${controlUnit.option.id}`}
-                      style={{ display: 'flex' }}
-                    >
-                      <div style={{ minWidth: '130px', textAlign: 'right' }}>
-                        {controlUnit.option.id}
-                      </div>
-                      <input
-                        disabled={!audioContext}
-                        type="range"
-                        id={controlUnit.option.id}
-                        min={controlUnit.option.min}
-                        max={controlUnit.option.max}
-                        step={controlUnit.option.step}
-                        value={controlUnit.value}
-                        onChange={e =>
-                          controlUnit.handler.onChange(e.target.valueAsNumber)
-                        }
-                      />
-                    </StyledDiv>
-                  ),
-              )}
-            </StyledController>
-          ))}
-        </div>
+        <StyledUnit key={`unit-${unit.id}`}>
+          <div className="label">{unit.id}</div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {unit.controllers.map((controller, idx) => (
+              <StyledController
+                key={`controller-${unit.id}-${idx}`}
+                style={{ display: 'flex' }}
+              >
+                {controller.map(
+                  controlUnit =>
+                    controlUnit.option && (
+                      <StyledDiv
+                        key={`controlUnit-${controlUnit.option.id}`}
+                        style={{ display: 'flex' }}
+                      >
+                        <div style={{ minWidth: '130px', textAlign: 'right' }}>
+                          {controlUnit.option.id}
+                        </div>
+                        <input
+                          disabled={!audioContext}
+                          type="range"
+                          id={controlUnit.option.id}
+                          min={controlUnit.option.min}
+                          max={controlUnit.option.max}
+                          step={controlUnit.option.step}
+                          value={controlUnit.value}
+                          onChange={e =>
+                            controlUnit.handler.onChange(e.target.valueAsNumber)
+                          }
+                        />
+                      </StyledDiv>
+                    ),
+                )}
+              </StyledController>
+            ))}
+          </div>
+        </StyledUnit>
       ))}
     </div>
   )
@@ -103,11 +103,19 @@ const StyledHeader = styled.div`
     height: 24px;
   }
 `
-const StyledController = styled.div`
+const StyledUnit = styled.div`
+  display: flex;
+  flex-direction: column;
   border-bottom: 2px solid #ccc;
+  padding: 24px;
+  gap: 16px;
+  .label {
+    font-weight: bold;
+  }
 `
+const StyledController = styled.div``
 const StyledDiv = styled.div`
-  height: 72px;
+  height: 40px;
   flex: 1 1 0;
   display: flex;
   align-items: center;

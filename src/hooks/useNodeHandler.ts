@@ -1,13 +1,13 @@
 import { useState } from 'react'
 
 const useNodeHandler = <T extends AudioNode = AudioNode>(
-  initialize: (context: AudioContext) => T,
+  initialize: (context: AudioContext) => Promise<T>,
 ) => {
   const [audioNode, setAudioNode] = useState<T>()
 
   const handler = {
-    initialize: (context: AudioContext) => {
-      const initializedNode = initialize(context)
+    initialize: async (context: AudioContext) => {
+      const initializedNode = await initialize(context)
       setAudioNode(initializedNode)
     },
     connectInput: (node: AudioNode) => {

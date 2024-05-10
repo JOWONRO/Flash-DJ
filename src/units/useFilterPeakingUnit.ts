@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid'
 
-import { UnitHandler, UnitType } from './types'
-import useFilterNode from './useFilterNode'
+import useFilterNode from '../nodes/useFilterNode'
+import { UnitHandler, UnitType } from '../types'
 
 const ID = nanoid()
 

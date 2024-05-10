@@ -1,6 +1,6 @@
-import { ControllerOption, NodeReturnType } from './types'
-import useController from './useController'
-import useNodeHandler from './useNodeHandler'
+import useController from '../hooks/useController'
+import useNodeHandler from '../hooks/useNodeHandler'
+import { ControllerOption, NodeReturnType } from '../types'
 
 export interface FilterNodeOptions {
   frequency?: ControllerOption
@@ -12,7 +12,7 @@ const useFilterNode = (
   type: BiquadFilterType,
   options: FilterNodeOptions,
 ): NodeReturnType => {
-  const { audioNode, handler } = useNodeHandler(context => {
+  const { audioNode, handler } = useNodeHandler(async context => {
     const filter = context.createBiquadFilter()
     filter.type = type
     return filter

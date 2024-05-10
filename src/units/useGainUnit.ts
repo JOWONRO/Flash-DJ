@@ -1,7 +1,7 @@
 import { nanoid } from 'nanoid'
 
-import { UnitHandler, UnitType } from './types'
-import useGainNode from './useGainNode'
+import useGainNode from '../nodes/useGainNode'
+import { UnitHandler, UnitType } from '../types'
 
 const ID = nanoid()
 

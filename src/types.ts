@@ -1,5 +1,5 @@
-import useController from './useController'
-import useNodeHandler from './useNodeHandler'
+import useController from './hooks/useController'
+import useNodeHandler from './hooks/useNodeHandler'
 
 export interface ControllerOption {
   id: string
@@ -19,7 +19,7 @@ export interface NodeReturnType {
 }
 
 export interface UnitHandler {
-  initialize: (context: AudioContext) => void
+  initialize: (context: AudioContext) => Promise<void>
   reset: () => void
   connect: (node: AudioNode) => AudioNode | undefined
 }

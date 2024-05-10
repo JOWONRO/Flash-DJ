@@ -1,16 +1,17 @@
 import { useState } from 'react'
 
-import useFilterPeakingUnit from '@src/controllers2.0/useFilterPeakingUnit'
-import useGainUnit from '@src/controllers2.0/useGainUnit'
+import useConvolverUnit from '@src/units/useConvolverUnit'
+import useFilterPeakingUnit from '@src/units/useFilterPeakingUnit'
+import useGainUnit from '@src/units/useGainUnit'
 
 const useUnits = () => {
   const [context, setContext] = useState<AudioContext>()
 
   const units = [
+    useConvolverUnit(),
     useFilterPeakingUnit(),
     useGainUnit(),
     // useFilterNotchController(),
-    // useFilterPeakingController(),
     // useFilterHighshelfController(),
     // useFilterLowshelfController(),
     // useFilterBandpassController(),
@@ -20,13 +21,14 @@ const useUnits = () => {
   ]
 
   const unitsHandler = {
-    initUnits: (context: AudioContext) => {
-      units.forEach(unit => unit.unitHandler.initialize(context))
+    initUnits: async (context: AudioContext) => {
+      await Promise.all(units.map(unit => unit.unitHandler.initialize(context)))
       setContext(context)
     },
     connectUnits: (source: AudioBufferSourceNode) => {
       if (!context) return
       let outputNode: AudioNode | undefined
+
       units.forEach((unit, idx) => {
         if (idx === 0) {
           outputNode = unit.unitHandler.connect(source)
@@ -38,17 +40,6 @@ const useUnits = () => {
         if (idx === units.length - 1) {
           outputNode?.connect(context.destination)
         }
-        // const currentNode = unit.audioNode
-        // if (!currentNode) return
-        // if (idx === 0) {
-        //   currentNode && source.connect(currentNode)
-        // } else {
-        //   const preNode = units[idx - 1].audioNode
-        //   preNode && preNode.connect(currentNode)
-        // }
-        // if (idx === units.length - 1) {
-        //   currentNode.connect(context.destination)
-        // }
       })
     },
     resetUnits: () => {

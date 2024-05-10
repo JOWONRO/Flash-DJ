@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import { ControllerOption } from './types'
+import { ControllerOption } from '../types'
 
 const useController = (
   onChange: (value: number) => void,
