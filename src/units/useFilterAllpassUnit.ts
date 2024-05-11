@@ -1,11 +1,7 @@
-import { nanoid } from 'nanoid'
-
 import useFilterNode from '../nodes/useFilterNode'
 import { UnitHandler, UnitType } from '../types'
 
-const ID = nanoid()
-
-const useFilterAllpassUnit: UnitType = () => {
+const useFilterAllpassUnit: UnitType = (id = 'filter-allpass-unit') => {
   const { audioNode, controllers, handler } = useFilterNode('allpass', {
     frequency: {
       id: 'Filter-Allpass-Frequency',
@@ -35,7 +31,7 @@ const useFilterAllpassUnit: UnitType = () => {
   }
 
   return {
-    id: `filter-Allpass-${ID}`,
+    id,
     controllers: [controllers],
     unitHandler,
   }

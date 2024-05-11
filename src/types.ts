@@ -1,5 +1,6 @@
 import useController from './hooks/useController'
 import useNodeHandler from './hooks/useNodeHandler'
+import useGainUnit from './units/useGainUnit'
 
 export interface ControllerOption {
   id: string
@@ -11,6 +12,7 @@ export interface ControllerOption {
 
 export type ControllerReturnType = ReturnType<typeof useController>
 export type NodeHandlerReturnType = ReturnType<typeof useNodeHandler>
+export type UnitReturnType = ReturnType<typeof useGainUnit>
 
 export interface NodeReturnType {
   audioNode: NodeHandlerReturnType['audioNode']
@@ -24,7 +26,7 @@ export interface UnitHandler {
   connect: (node: AudioNode) => AudioNode | undefined
 }
 
-export type UnitType = () => {
+export type UnitType = (id?: string) => {
   id: string
   controllers: ControllerReturnType[][]
   unitHandler: UnitHandler

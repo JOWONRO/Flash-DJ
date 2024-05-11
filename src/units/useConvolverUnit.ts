@@ -1,11 +1,8 @@
 import useConvolverNode from '@src/nodes/useConvolverNode'
 import useGainNode from '@src/nodes/useGainNode'
-import { UnitHandler } from '@src/types'
-import { nanoid } from 'nanoid'
+import { UnitHandler, UnitType } from '@src/types'
 
-const ID = nanoid()
-
-const useConvolverUnit = () => {
+const useConvolverUnit: UnitType = (id = 'convolver-unit') => {
   const { audioNode: convolverNode, handler: convolverHandler } =
     useConvolverNode()
   const { audioNode: mixNode, handler: mixHandler } = useGainNode()
@@ -55,7 +52,7 @@ const useConvolverUnit = () => {
   }
 
   return {
-    id: `convolver-${ID}`,
+    id,
     controllers: [wetControllers, dryControllers],
     unitHandler,
   }
