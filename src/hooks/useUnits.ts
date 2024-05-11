@@ -17,16 +17,16 @@ const useUnits = () => {
   const [context, setContext] = useState<AudioContext>()
 
   const units: UnitReturnType[] = [
-    useDelayUnit(),
-    useReverbUnit(),
+    useFilterLowpassUnit(),
+    useFilterHighpassUnit(),
+    useFilterBandpassUnit(),
+    useFilterLowshelfUnit(),
+    useFilterHighshelfUnit(),
     useFilterNotchUnit(),
     useFilterPeakingUnit(),
-    useFilterHighshelfUnit(),
-    useFilterLowshelfUnit(),
-    useFilterBandpassUnit(),
     useFilterAllpassUnit(),
-    useFilterHighpassUnit(),
-    useFilterLowpassUnit(),
+    useDelayUnit(),
+    useReverbUnit(),
     useGainUnit(),
   ]
 
