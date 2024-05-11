@@ -15,6 +15,7 @@ export type NodeHandlerReturnType = ReturnType<typeof useNodeHandler>
 export type UnitReturnType = ReturnType<typeof useGainUnit>
 
 export interface NodeReturnType {
+  context: NodeHandlerReturnType['context']
   audioNode: NodeHandlerReturnType['audioNode']
   controllers: ControllerReturnType[]
   handler: NodeHandlerReturnType['handler']

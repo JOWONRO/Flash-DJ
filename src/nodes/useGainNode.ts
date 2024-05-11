@@ -5,7 +5,7 @@ import useNodeHandler from '../hooks/useNodeHandler'
 import { ControllerOption, NodeReturnType } from '../types'
 
 const useGainNode = (option?: ControllerOption): NodeReturnType => {
-  const { audioNode, handler } = useNodeHandler(async context =>
+  const { context, audioNode, handler } = useNodeHandler(async context =>
     context.createGain(),
   )
 
@@ -16,7 +16,7 @@ const useGainNode = (option?: ControllerOption): NodeReturnType => {
       audioNode.gain.value = gainController.value
   }, [audioNode, gainController.value])
 
-  return { audioNode, handler, controllers: [gainController] }
+  return { context, audioNode, handler, controllers: [gainController] }
 }
 
 export default useGainNode

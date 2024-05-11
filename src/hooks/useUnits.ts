@@ -1,7 +1,6 @@
 import { useState } from 'react'
 
 import { UnitReturnType } from '@src/types'
-import useConvolverUnit from '@src/units/useConvolverUnit'
 import useDelayUnit from '@src/units/useDelayUnit'
 import useFilterAllpassUnit from '@src/units/useFilterAllpassUnit'
 import useFilterBandpassUnit from '@src/units/useFilterBandpassUnit'
@@ -12,13 +11,14 @@ import useFilterLowshelfUnit from '@src/units/useFilterLowshelfUnit'
 import useFilterNotchUnit from '@src/units/useFilterNotchUnit'
 import useFilterPeakingUnit from '@src/units/useFilterPeakingUnit'
 import useGainUnit from '@src/units/useGainUnit'
+import useReverbUnit from '@src/units/useReverbUnit'
 
 const useUnits = () => {
   const [context, setContext] = useState<AudioContext>()
 
   const units: UnitReturnType[] = [
     useDelayUnit(),
-    useConvolverUnit(),
+    useReverbUnit(),
     useFilterNotchUnit(),
     useFilterPeakingUnit(),
     useFilterHighshelfUnit(),

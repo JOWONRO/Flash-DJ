@@ -14,7 +14,7 @@ const useFilterNode = (
   type: BiquadFilterType,
   options: FilterNodeOptions,
 ): NodeReturnType => {
-  const { audioNode, handler } = useNodeHandler(async context => {
+  const { context, audioNode, handler } = useNodeHandler(async context => {
     const filter = context.createBiquadFilter()
     filter.type = type
     return filter
@@ -38,6 +38,7 @@ const useFilterNode = (
   }, [audioNode, qController.value])
 
   return {
+    context,
     audioNode,
     handler,
     controllers: [frequencyController, qController, gainController],

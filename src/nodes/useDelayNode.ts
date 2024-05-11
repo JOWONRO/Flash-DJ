@@ -5,7 +5,7 @@ import useNodeHandler from '@src/hooks/useNodeHandler'
 import { ControllerOption, NodeReturnType } from '@src/types'
 
 const useDelayNode = (option?: ControllerOption): NodeReturnType => {
-  const { audioNode, handler } = useNodeHandler(async context => {
+  const { context, audioNode, handler } = useNodeHandler(async context => {
     const node = context.createDelay(option?.max)
     return node
   })
@@ -13,11 +13,14 @@ const useDelayNode = (option?: ControllerOption): NodeReturnType => {
   const delayController = useController(option)
 
   useEffect(() => {
-    if (audioNode && delayController.value !== undefined)
-      audioNode.delayTime.value = delayController.value
-  }, [audioNode, delayController.value])
+    if (audioNode && context && delayController.value !== undefined)
+      audioNode.delayTime.setValueAtTime(
+        delayController.value,
+        context.currentTime,
+      )
+  }, [audioNode, context, delayController.value])
 
-  return { audioNode, handler, controllers: [delayController] }
+  return { context, audioNode, handler, controllers: [delayController] }
 }
 
 export default useDelayNode

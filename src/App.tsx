@@ -96,7 +96,7 @@ const StyledHeader = styled.div`
   padding: 0 16px;
   gap: 12px;
   align-items: center;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 1px solid #444;
   button {
     padding: 0 12px;
     min-width: 100px;
@@ -106,7 +106,7 @@ const StyledHeader = styled.div`
 const StyledUnit = styled.div`
   display: flex;
   flex-direction: column;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 1px solid #444;
   padding: 24px;
   gap: 16px;
   .label {

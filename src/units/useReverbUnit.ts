@@ -2,7 +2,7 @@ import useConvolverNode from '@src/nodes/useConvolverNode'
 import useGainNode from '@src/nodes/useGainNode'
 import { UnitHandler, UnitType } from '@src/types'
 
-const useConvolverUnit: UnitType = (id = 'convolver-unit') => {
+const useReverbUnit: UnitType = (id = 'reverb-unit') => {
   const { audioNode: convolverNode, handler: convolverHandler } =
     useConvolverNode()
   const { audioNode: mixNode, handler: mixHandler } = useGainNode()
@@ -11,7 +11,7 @@ const useConvolverUnit: UnitType = (id = 'convolver-unit') => {
     controllers: wetControllers,
     handler: wetHandler,
   } = useGainNode({
-    id: 'Convolver-Wet',
+    id: 'Reverb-Wet',
     min: 0,
     max: 1,
     step: 0.01,
@@ -22,7 +22,7 @@ const useConvolverUnit: UnitType = (id = 'convolver-unit') => {
     controllers: dryControllers,
     handler: dryHandler,
   } = useGainNode({
-    id: 'Convolver-Dry',
+    id: 'Reverb-Dry',
     min: 0,
     max: 1,
     step: 0.01,
@@ -58,4 +58,4 @@ const useConvolverUnit: UnitType = (id = 'convolver-unit') => {
   }
 }
 
-export default useConvolverUnit
+export default useReverbUnit

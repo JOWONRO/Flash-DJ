@@ -6,14 +6,14 @@ const exampleAudio =
   '/src/assets/Trainwreck Of Electro Swing - A Hat In Time Remix.mp3'
 
 const useAudioSource = (src?: string) => {
-  const { units, unitsHandler } = useUnits()
-
   const [audioContext, setAudioContext] = useState<AudioContext>()
   const [sourceNode, setSourceNode] = useState<AudioBufferSourceNode>()
   const [audioBuffer, setAudioBuffer] = useState<AudioBuffer>()
   const [isPlaying, setIsPlaying] = useState(false)
   const [startTime, setStartTime] = useState(0)
   const [playbackTime, setPlaybackTime] = useState(0)
+
+  const { units, unitsHandler } = useUnits()
 
   const audioHandler = {
     initAudio: async () => {
