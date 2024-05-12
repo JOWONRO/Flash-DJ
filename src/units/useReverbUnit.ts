@@ -2,11 +2,9 @@ import useConvolverNode from '@src/nodes/useConvolverNode'
 import useGainNode from '@src/nodes/useGainNode'
 import { UnitHandler, UnitType } from '@src/types'
 
-const src = '/src/assets/ir/reverb/1 Halls 01 Large Hall.wav'
-
 const useReverbUnit: UnitType = (id = 'reverb-unit') => {
   const { audioNode: convolverNode, handler: convolverHandler } =
-    useConvolverNode(src)
+    useConvolverNode()
   const { audioNode: mixNode, handler: mixHandler } = useGainNode()
   const {
     audioNode: wetNode,
