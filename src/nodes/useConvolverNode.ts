@@ -1,13 +1,12 @@
 import useNodeHandler from '@src/hooks/useNodeHandler'
 import { NodeReturnType } from '@src/types'
 
-const EXAMPLE_IR =
-  '/src/assets/ir/M7 - 1 Halls 01 Large Hall/1 Halls 01 Large Hall  M-to-S.wav'
+const EXAMPLE_IR = '/src/assets/ir/reverb/1 Halls 01 Large Hall.wav'
 
-const useConvolverNode = (): NodeReturnType => {
+const useConvolverNode = (src: string = EXAMPLE_IR): NodeReturnType => {
   const { context, audioNode, handler } = useNodeHandler(async context => {
     const convolver = context.createConvolver()
-    const response = await fetch(EXAMPLE_IR)
+    const response = await fetch(src)
     const arrayBuffer = await response.arrayBuffer()
     convolver.buffer = await context.decodeAudioData(arrayBuffer)
     return convolver
