@@ -25,6 +25,18 @@ Units developed include:
 - Reverb
 - Gain
 
+Units planned for development include:
+
+- Pitch Shift
+- Chorus
+- Phaser
+- Tremolo
+- Pan
+- Slicer
+- Lo-Fi
+- Ring Modulator
+- Distortion
+
 <br />
 
 ## Quick Start
