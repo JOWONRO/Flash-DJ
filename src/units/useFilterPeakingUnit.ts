@@ -27,13 +27,9 @@ const useFilterPeakingUnit: UnitType = (id = 'filter-peaking-unit') => {
   })
 
   const unitHandler = useUnitHandler({
-    controllers: [controllers],
     initialize: handler.initialize,
-    connect: node => {
-      if (!audioNode) return
-      node.connect(audioNode)
-      return audioNode
-    },
+    connect: audioNode,
+    reset: [controllers],
   })
 
   return { id, controllers: [controllers], unitHandler }

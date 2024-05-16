@@ -7,7 +7,7 @@ const useDelayUnit: UnitType = (id = 'delay-unit') => {
   const { audioNode: mixNode, handler: mixHandler } = useGainNode()
   const {
     audioNode: delayNode,
-    controllers: delayController,
+    controllers: delayControllers,
     handler: delayHandler,
   } = useDelayNode({
     id: 'Time',
@@ -18,7 +18,7 @@ const useDelayUnit: UnitType = (id = 'delay-unit') => {
   })
   const {
     audioNode: feedbackNode,
-    controllers: feedbackController,
+    controllers: feedbackControllers,
     handler: feedbackHandler,
   } = useGainNode({
     id: 'Feedback',
@@ -51,13 +51,12 @@ const useDelayUnit: UnitType = (id = 'delay-unit') => {
   })
 
   const controllers = [
-    [...delayController, ...feedbackController],
+    [...delayControllers, ...feedbackControllers],
     wetControllers,
     dryControllers,
   ]
 
   const unitHandler = useUnitHandler({
-    controllers,
     initialize: async context => {
       await mixHandler.initialize(context)
       await delayHandler.initialize(context)
@@ -65,11 +64,11 @@ const useDelayUnit: UnitType = (id = 'delay-unit') => {
       await wetHandler.initialize(context)
       await dryHandler.initialize(context)
     },
-    connect: node => {
+    connect: prevNode => {
       if (!mixNode || !delayNode || !feedbackNode || !wetNode || !dryNode)
         return
-      node.connect(dryNode)
-      node.connect(delayNode)
+      prevNode.connect(dryNode)
+      prevNode.connect(delayNode)
       delayNode.connect(feedbackNode)
       feedbackNode.connect(delayNode)
       delayNode.connect(wetNode)
@@ -77,6 +76,7 @@ const useDelayUnit: UnitType = (id = 'delay-unit') => {
       dryNode.connect(mixNode)
       return mixNode
     },
+    reset: controllers,
   })
 
   return { id, controllers, unitHandler }

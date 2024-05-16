@@ -36,22 +36,22 @@ const useReverbUnit: UnitType = (id = 'reverb-unit') => {
   const controllers = [wetControllers, dryControllers]
 
   const unitHandler = useUnitHandler({
-    controllers,
     initialize: async context => {
       await convolverHandler.initialize(context)
       await mixHandler.initialize(context)
       await wetHandler.initialize(context)
       await dryHandler.initialize(context)
     },
-    connect: node => {
+    connect: prevNode => {
       if (!convolverNode || !dryNode || !wetNode || !mixNode) return
-      node.connect(convolverNode)
-      node.connect(dryNode)
+      prevNode.connect(convolverNode)
+      prevNode.connect(dryNode)
       convolverNode.connect(wetNode)
       wetNode.connect(mixNode)
       dryNode.connect(mixNode)
       return mixNode
     },
+    reset: controllers,
   })
 
   return { id, controllers, unitHandler }

@@ -21,13 +21,9 @@ const useFilterNotchUnit: UnitType = (id = 'filter-notch-unit') => {
   })
 
   const unitHandler = useUnitHandler({
-    controllers: [controllers],
     initialize: handler.initialize,
-    connect: node => {
-      if (!audioNode) return
-      node.connect(audioNode)
-      return audioNode
-    },
+    connect: audioNode,
+    reset: [controllers],
   })
 
   return { id, controllers: [controllers], unitHandler }

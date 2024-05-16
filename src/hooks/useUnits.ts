@@ -3,6 +3,7 @@ import { useState } from 'react'
 import { UnitReturnType } from '@src/types'
 import useCompressorUnit from '@src/units/useCompressorUnit'
 import useDelayUnit from '@src/units/useDelayUnit'
+import useDistortionUnit from '@src/units/useDistortionUnit'
 import useFilterAllpassUnit from '@src/units/useFilterAllpassUnit'
 import useFilterBandpassUnit from '@src/units/useFilterBandpassUnit'
 import useFilterHighpassUnit from '@src/units/useFilterHighpassUnit'
@@ -19,6 +20,7 @@ const useUnits = () => {
   const [context, setContext] = useState<AudioContext>()
 
   const units: UnitReturnType[] = [
+    useDistortionUnit(),
     useFilterLowpassUnit(),
     useFilterHighpassUnit(),
     useFilterBandpassUnit(),

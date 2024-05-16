@@ -26,6 +26,7 @@ Units developed include:
 - Delay
 - Compressor
 - Panner
+- Distortion
 
 Units planned for development include:
 
@@ -37,7 +38,6 @@ Units planned for development include:
 - Slicer
 - Lo-Fi
 - Ring Modulator
-- Distortion
 
 <br />
 

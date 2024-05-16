@@ -21,14 +21,23 @@ export interface NodeReturnType {
   handler: NodeHandlerReturnType['handler']
 }
 
-export interface UnitHandlerOption {
-  controllers: ControllerReturnType[][]
+export interface UnitHandlerParams {
+  /**
+   * If you want to use the default reset function, use a (ControllerReturnType[][]) object.
+   */
+  reset: ControllerReturnType[][] | (() => void)
   initialize: (context: AudioContext) => Promise<void>
-  connect: (node: AudioNode) => AudioNode | undefined
+  /**
+   * If you want to use the default connect function, use an (AudioNode | undefined) object.
+   */
+  connect:
+    | AudioNode
+    | undefined
+    | ((prevNode: AudioNode) => AudioNode | undefined)
 }
 export interface UnitHandler {
-  initialize: UnitHandlerOption['initialize']
-  connect: UnitHandlerOption['connect']
+  initialize: UnitHandlerParams['initialize']
+  connect: (prevNode: AudioNode) => AudioNode | undefined
   reset: () => void
 }
 export type UnitType = (id?: string) => {

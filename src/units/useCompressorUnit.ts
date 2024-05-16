@@ -1,5 +1,5 @@
 import useUnitHandler from '@src/hooks/useUnitHandler'
-import useCompressorNode from '@src/nodes/useCompresorNode'
+import useCompressorNode from '@src/nodes/useCompressorNode'
 import { UnitType } from '@src/types'
 
 const useCompressorUnit: UnitType = (id = 'compressor-unit') => {
@@ -42,13 +42,9 @@ const useCompressorUnit: UnitType = (id = 'compressor-unit') => {
   })
 
   const unitHandler = useUnitHandler({
-    controllers: [controllers],
     initialize: handler.initialize,
-    connect: node => {
-      if (!audioNode) return
-      node.connect(audioNode)
-      return audioNode
-    },
+    connect: audioNode,
+    reset: [controllers],
   })
 
   return { id, controllers: [controllers], unitHandler }

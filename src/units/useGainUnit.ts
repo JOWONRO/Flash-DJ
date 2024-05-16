@@ -15,11 +15,7 @@ const useGainUnit: UnitType = (id = 'gain-unit') => {
   const unitHandler = useUnitHandler({
     controllers: [controllers],
     initialize: handler.initialize,
-    connect: node => {
-      if (!audioNode) return
-      node.connect(audioNode)
-      return audioNode
-    },
+    connect: audioNode,
   })
 
   return { id, controllers: [controllers], unitHandler }
