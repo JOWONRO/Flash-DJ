@@ -1,11 +1,14 @@
 import useUnitHandler from '@src/hooks/useUnitHandler'
 import useConvolverNode from '@src/nodes/useConvolverNode'
 import useGainNode from '@src/nodes/useGainNode'
+import { reverbIRs } from '@src/static/reverbIRs'
 import { UnitType } from '@src/types'
+
+const EXAMPLE_IR = reverbIRs.halls.amsterdamHall
 
 const useReverbUnit: UnitType = (id = 'reverb-unit') => {
   const { audioNode: convolverNode, handler: convolverHandler } =
-    useConvolverNode()
+    useConvolverNode(EXAMPLE_IR)
   const { audioNode: mixNode, handler: mixHandler } = useGainNode()
   const {
     audioNode: wetNode,

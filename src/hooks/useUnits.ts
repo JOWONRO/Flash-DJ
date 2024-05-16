@@ -19,8 +19,6 @@ const useUnits = () => {
   const [context, setContext] = useState<AudioContext>()
 
   const units: UnitReturnType[] = [
-    usePannerDefaultUnit(),
-    useCompressorUnit(),
     useFilterLowpassUnit(),
     useFilterHighpassUnit(),
     useFilterBandpassUnit(),
@@ -31,6 +29,8 @@ const useUnits = () => {
     useFilterAllpassUnit(),
     useDelayUnit(),
     useReverbUnit(),
+    usePannerDefaultUnit(),
+    useCompressorUnit(),
     useGainUnit(),
   ]
 
