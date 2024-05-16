@@ -1,6 +1,7 @@
+import useUnitHandler from '@src/hooks/useUnitHandler'
 import useConvolverNode from '@src/nodes/useConvolverNode'
 import useGainNode from '@src/nodes/useGainNode'
-import { UnitHandler, UnitType } from '@src/types'
+import { UnitType } from '@src/types'
 
 const useReverbUnit: UnitType = (id = 'reverb-unit') => {
   const { audioNode: convolverNode, handler: convolverHandler } =
@@ -29,16 +30,15 @@ const useReverbUnit: UnitType = (id = 'reverb-unit') => {
     defaultValue: 1,
   })
 
-  const unitHandler: UnitHandler = {
+  const controllers = [wetControllers, dryControllers]
+
+  const unitHandler = useUnitHandler({
+    controllers,
     initialize: async context => {
       await convolverHandler.initialize(context)
       await mixHandler.initialize(context)
       await wetHandler.initialize(context)
       await dryHandler.initialize(context)
-    },
-    reset: () => {
-      wetControllers.forEach(controller => controller.handler.reset())
-      dryControllers.forEach(controller => controller.handler.reset())
     },
     connect: node => {
       if (!convolverNode || !dryNode || !wetNode || !mixNode) return
@@ -49,13 +49,9 @@ const useReverbUnit: UnitType = (id = 'reverb-unit') => {
       dryNode.connect(mixNode)
       return mixNode
     },
-  }
+  })
 
-  return {
-    id,
-    controllers: [wetControllers, dryControllers],
-    unitHandler,
-  }
+  return { id, controllers, unitHandler }
 }
 
 export default useReverbUnit

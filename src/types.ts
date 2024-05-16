@@ -21,12 +21,16 @@ export interface NodeReturnType {
   handler: NodeHandlerReturnType['handler']
 }
 
-export interface UnitHandler {
+export interface UnitHandlerOption {
+  controllers: ControllerReturnType[][]
   initialize: (context: AudioContext) => Promise<void>
-  reset: () => void
   connect: (node: AudioNode) => AudioNode | undefined
 }
-
+export interface UnitHandler {
+  initialize: UnitHandlerOption['initialize']
+  connect: UnitHandlerOption['connect']
+  reset: () => void
+}
 export type UnitType = (id?: string) => {
   id: string
   controllers: ControllerReturnType[][]

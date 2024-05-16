@@ -1,5 +1,7 @@
+import useUnitHandler from '@src/hooks/useUnitHandler'
+
 import useFilterNode from '../nodes/useFilterNode'
-import { UnitHandler, UnitType } from '../types'
+import { UnitType } from '../types'
 
 const useFilterBandpassUnit: UnitType = (id = 'filter-bandpass-unit') => {
   const { audioNode, controllers, handler } = useFilterNode('bandpass', {
@@ -18,23 +20,17 @@ const useFilterBandpassUnit: UnitType = (id = 'filter-bandpass-unit') => {
     },
   })
 
-  const unitHandler: UnitHandler = {
+  const unitHandler = useUnitHandler({
+    controllers: [controllers],
     initialize: handler.initialize,
-    reset: () => {
-      controllers.forEach(controller => controller.handler.reset())
-    },
     connect: node => {
       if (!audioNode) return
       node.connect(audioNode)
       return audioNode
     },
-  }
+  })
 
-  return {
-    id,
-    controllers: [controllers],
-    unitHandler,
-  }
+  return { id, controllers: [controllers], unitHandler }
 }
 
 export default useFilterBandpassUnit

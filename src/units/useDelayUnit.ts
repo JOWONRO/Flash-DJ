@@ -1,6 +1,7 @@
+import useUnitHandler from '@src/hooks/useUnitHandler'
 import useDelayNode from '@src/nodes/useDelayNode'
 import useGainNode from '@src/nodes/useGainNode'
-import { UnitHandler, UnitType } from '@src/types'
+import { UnitType } from '@src/types'
 
 const useDelayUnit: UnitType = (id = 'delay-unit') => {
   const { audioNode: mixNode, handler: mixHandler } = useGainNode()
@@ -49,19 +50,20 @@ const useDelayUnit: UnitType = (id = 'delay-unit') => {
     defaultValue: 1,
   })
 
-  const unitHandler: UnitHandler = {
+  const controllers = [
+    [...delayController, ...feedbackController],
+    wetControllers,
+    dryControllers,
+  ]
+
+  const unitHandler = useUnitHandler({
+    controllers,
     initialize: async context => {
       await mixHandler.initialize(context)
       await delayHandler.initialize(context)
       await feedbackHandler.initialize(context)
       await wetHandler.initialize(context)
       await dryHandler.initialize(context)
-    },
-    reset: () => {
-      delayController.forEach(controller => controller.handler.reset())
-      feedbackController.forEach(controller => controller.handler.reset())
-      wetControllers.forEach(controller => controller.handler.reset())
-      dryControllers.forEach(controller => controller.handler.reset())
     },
     connect: node => {
       if (!mixNode || !delayNode || !feedbackNode || !wetNode || !dryNode)
@@ -75,17 +77,9 @@ const useDelayUnit: UnitType = (id = 'delay-unit') => {
       dryNode.connect(mixNode)
       return mixNode
     },
-  }
+  })
 
-  return {
-    id,
-    controllers: [
-      [...delayController, ...feedbackController],
-      wetControllers,
-      dryControllers,
-    ],
-    unitHandler,
-  }
+  return { id, controllers, unitHandler }
 }
 
 export default useDelayUnit
