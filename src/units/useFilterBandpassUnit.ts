@@ -6,13 +6,13 @@ import { UnitType } from '../types'
 const useFilterBandpassUnit: UnitType = (id = 'filter-bandpass-unit') => {
   const { audioNode, controllers, handler } = useFilterNode('bandpass', {
     frequency: {
-      id: 'Filter-Bandpass-Frequency',
+      id: 'Frequency',
       min: 50,
       max: 15000,
       defaultValue: 1000,
     },
     q: {
-      id: 'Filter-Bandpass-Q',
+      id: 'Q',
       min: 0.1,
       max: 10,
       step: 0.01,

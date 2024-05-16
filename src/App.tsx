@@ -56,10 +56,7 @@ const App = () => {
                 <div className="label">{unit.id}</div>
                 <div style={{ display: 'flex', flexDirection: 'column' }}>
                   {unit.controllers.map((controller, idx) => (
-                    <StyledController
-                      key={`controller-${unit.id}-${idx}`}
-                      style={{ display: 'flex' }}
-                    >
+                    <StyledController key={`controller-${unit.id}-${idx}`}>
                       {controller.map(
                         controlUnit =>
                           controlUnit.option && (
@@ -148,7 +145,10 @@ const StyledUnit = styled.div`
     font-weight: bold;
   }
 `
-const StyledController = styled.div``
+const StyledController = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`
 const StyledDiv = styled.div`
   height: 40px;
   flex: 1 1 0;
@@ -158,5 +158,6 @@ const StyledDiv = styled.div`
   gap: 12px;
   input {
     width: 100%;
+    min-width: 150px;
   }
 `

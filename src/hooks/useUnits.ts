@@ -12,12 +12,14 @@ import useFilterLowshelfUnit from '@src/units/useFilterLowshelfUnit'
 import useFilterNotchUnit from '@src/units/useFilterNotchUnit'
 import useFilterPeakingUnit from '@src/units/useFilterPeakingUnit'
 import useGainUnit from '@src/units/useGainUnit'
+import usePannerDefaultUnit from '@src/units/usePannerDefaultUnit'
 import useReverbUnit from '@src/units/useReverbUnit'
 
 const useUnits = () => {
   const [context, setContext] = useState<AudioContext>()
 
   const units: UnitReturnType[] = [
+    usePannerDefaultUnit(),
     useCompressorUnit(),
     useFilterLowpassUnit(),
     useFilterHighpassUnit(),

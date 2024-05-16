@@ -5,35 +5,35 @@ import { UnitType } from '@src/types'
 const useCompressorUnit: UnitType = (id = 'compressor-unit') => {
   const { audioNode, controllers, handler } = useCompressorNode({
     threshold: {
-      id: 'Compressor-Threshold',
+      id: 'Threshold',
       min: -100,
       max: 0,
       step: 1,
       defaultValue: 0,
     },
     knee: {
-      id: 'Compressor-Knee',
+      id: 'Knee',
       min: 0,
       max: 40,
       step: 1,
       defaultValue: 0,
     },
     ratio: {
-      id: 'Compressor-Ratio',
+      id: 'Ratio',
       min: 1,
       max: 20,
       step: 1,
       defaultValue: 1,
     },
     attack: {
-      id: 'Compressor-Attack',
+      id: 'Attack',
       min: 0.001,
       max: 1,
       step: 0.001,
       defaultValue: 0.1,
     },
     release: {
-      id: 'Compressor-Release',
+      id: 'Release',
       min: 0.01,
       max: 1,
       step: 0.01,

@@ -6,13 +6,13 @@ import { UnitType } from '../types'
 const useFilterHighshelfUnit: UnitType = (id = 'filter-highshelf-unit') => {
   const { audioNode, controllers, handler } = useFilterNode('highshelf', {
     frequency: {
-      id: 'Filter-Highshelf-Frequency',
+      id: 'Frequency',
       min: 2000,
       max: 15000,
       defaultValue: 10000,
     },
     gain: {
-      id: 'Filter-Highshelf-Gain',
+      id: 'Gain',
       min: -15,
       max: 15,
       step: 0.01,

@@ -12,7 +12,7 @@ const useReverbUnit: UnitType = (id = 'reverb-unit') => {
     controllers: wetControllers,
     handler: wetHandler,
   } = useGainNode({
-    id: 'Reverb-Wet',
+    id: 'Wet',
     min: 0,
     max: 1,
     step: 0.01,
@@ -23,7 +23,7 @@ const useReverbUnit: UnitType = (id = 'reverb-unit') => {
     controllers: dryControllers,
     handler: dryHandler,
   } = useGainNode({
-    id: 'Reverb-Dry',
+    id: 'Dry',
     min: 0,
     max: 1,
     step: 0.01,

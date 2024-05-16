@@ -13,6 +13,7 @@ Effect units are being developed using the nodes provided by the Web Audio API.
 
 Units developed include:
 
+- Gain
 - Filter - Lowpass
 - Filter - Highpass
 - Filter - Bandpass
@@ -21,9 +22,10 @@ Units developed include:
 - Filter - Notch
 - Filter - Peaking
 - Filter - Allpass
-- Delay
 - Reverb
-- Gain
+- Delay
+- Compressor
+- Panner
 
 Units planned for development include:
 

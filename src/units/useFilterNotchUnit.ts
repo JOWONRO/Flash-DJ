@@ -6,13 +6,13 @@ import { UnitType } from '../types'
 const useFilterNotchUnit: UnitType = (id = 'filter-notch-unit') => {
   const { audioNode, controllers, handler } = useFilterNode('notch', {
     frequency: {
-      id: 'Filter-Notch-Center',
+      id: 'Center',
       min: 20,
       max: 20000,
       defaultValue: 1000,
     },
     q: {
-      id: 'Filter-Notch-Q',
+      id: 'Q',
       min: 0.1,
       max: 20,
       step: 0.01,

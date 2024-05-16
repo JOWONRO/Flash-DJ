@@ -10,7 +10,7 @@ const useDelayUnit: UnitType = (id = 'delay-unit') => {
     controllers: delayController,
     handler: delayHandler,
   } = useDelayNode({
-    id: 'Delay-Time',
+    id: 'Time',
     min: 0,
     max: 3,
     step: 0.01,
@@ -21,7 +21,7 @@ const useDelayUnit: UnitType = (id = 'delay-unit') => {
     controllers: feedbackController,
     handler: feedbackHandler,
   } = useGainNode({
-    id: 'Delay-Feedback',
+    id: 'Feedback',
     min: 0,
     max: 0.9,
     step: 0.01,
@@ -32,7 +32,7 @@ const useDelayUnit: UnitType = (id = 'delay-unit') => {
     controllers: wetControllers,
     handler: wetHandler,
   } = useGainNode({
-    id: 'Delay-Wet',
+    id: 'Wet',
     min: 0,
     max: 1,
     step: 0.01,
@@ -43,7 +43,7 @@ const useDelayUnit: UnitType = (id = 'delay-unit') => {
     controllers: dryControllers,
     handler: dryHandler,
   } = useGainNode({
-    id: 'Delay-Dry',
+    id: 'Dry',
     min: 0,
     max: 1,
     step: 0.01,
