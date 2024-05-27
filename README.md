@@ -27,6 +27,7 @@ Units developed include:
 - Compressor
 - Panner
 - Distortion
+- Lo-Fi
 
 Units planned for development include:
 
@@ -36,7 +37,6 @@ Units planned for development include:
 - Tremolo
 - Pan
 - Slicer
-- Lo-Fi
 - Ring Modulator
 
 <br />
