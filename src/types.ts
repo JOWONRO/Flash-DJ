@@ -9,6 +9,14 @@ export interface ControllerOption {
   step?: number
   defaultValue: number
 }
+export interface Controller {
+  value: number | undefined
+  handler: {
+    onChange: (value: number) => void
+    reset: () => void
+  }
+  option: ControllerOption | undefined
+}
 
 export type ControllerReturnType = ReturnType<typeof useController>
 export type NodeHandlerReturnType = ReturnType<typeof useNodeHandler>
@@ -31,8 +39,7 @@ export interface UnitHandlerParams {
    * If you want to use the default connect function, use an (AudioNode | undefined) object.
    */
   connect:
-    | AudioNode
-    | undefined
+    | (AudioNode | undefined)
     | ((prevNode: AudioNode) => AudioNode | undefined)
 }
 export interface UnitHandler {

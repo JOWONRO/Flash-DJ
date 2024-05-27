@@ -13,7 +13,7 @@ const useGainUnit: UnitType = (id = 'gain-unit') => {
   })
 
   const unitHandler = useUnitHandler({
-    controllers: [controllers],
+    reset: [controllers],
     initialize: handler.initialize,
     connect: audioNode,
   })

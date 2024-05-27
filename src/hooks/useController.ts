@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import { ControllerOption } from '../types'
+import { Controller, ControllerOption } from '../types'
 
-const useController = (option?: ControllerOption) => {
+const useController = (option?: ControllerOption): Controller => {
   const [value, setValue] = useState(option?.defaultValue)
 
   const handler = {
