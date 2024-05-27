@@ -11,7 +11,9 @@ export interface BitCrusherNodeOptions {
 
 const useBitCrusherNode = (options: BitCrusherNodeOptions): NodeReturnType => {
   const { context, audioNode, handler } = useNodeHandler(async context => {
-    await context.audioWorklet.addModule('/src/static/bitCrusher.ts')
+    await context.audioWorklet.addModule(
+      '/src/processors/bitCrusherProcessor.ts',
+    )
     const bitCrusher = new AudioWorkletNode(context, 'bit-crusher-processor')
     return bitCrusher
   })

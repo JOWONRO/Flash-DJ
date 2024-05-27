@@ -28,6 +28,7 @@ Units developed include:
 - Panner
 - Distortion
 - Lo-Fi
+- Ring Modulator
 
 Units planned for development include:
 
@@ -37,7 +38,6 @@ Units planned for development include:
 - Tremolo
 - Pan
 - Slicer
-- Ring Modulator
 
 <br />
 

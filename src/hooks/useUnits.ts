@@ -16,11 +16,13 @@ import useGainUnit from '@src/units/useGainUnit'
 import useLoFiUnit from '@src/units/useLoFiUnit'
 import usePannerDefaultUnit from '@src/units/usePannerDefaultUnit'
 import useReverbUnit from '@src/units/useReverbUnit'
+import useRingModularUnit from '@src/units/useRingModularUnit'
 
 const useUnits = () => {
   const [context, setContext] = useState<AudioContext>()
 
   const units: UnitReturnType[] = [
+    useRingModularUnit(),
     useLoFiUnit(),
     useDistortionUnit(),
     useFilterLowpassUnit(),
