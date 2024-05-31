@@ -13,7 +13,7 @@ const NUM_SAMPLES = 44100
 
 const softClipping: DistortionCurve = {
   option: {
-    id: 'amount',
+    id: 'Amount',
     min: 0.1,
     max: 1,
     step: 0.01,
@@ -31,7 +31,7 @@ const softClipping: DistortionCurve = {
 
 const softAndHardClipping: DistortionCurve = {
   option: {
-    id: 'amount',
+    id: 'Amount',
     min: 0,
     max: 100,
     step: 1,
@@ -51,7 +51,7 @@ const softAndHardClipping: DistortionCurve = {
 
 const hardClipping: DistortionCurve = {
   option: {
-    id: 'threshold',
+    id: 'Threshold',
     min: 0,
     max: 1,
     step: 0.01,
@@ -69,7 +69,7 @@ const hardClipping: DistortionCurve = {
 
 const overdrive: DistortionCurve = {
   option: {
-    id: 'amount',
+    id: 'Amount',
     min: 0,
     max: 100,
     step: 1,
@@ -88,7 +88,7 @@ const overdrive: DistortionCurve = {
 
 const tangentBase: DistortionCurve = {
   option: {
-    id: 'amount',
+    id: 'Amount',
     min: 1,
     max: 20,
     step: 0.1,
