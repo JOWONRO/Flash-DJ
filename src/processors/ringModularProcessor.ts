@@ -32,6 +32,7 @@ class RingModulatorProcessor extends AudioWorkletProcessor {
     for (let channel = 0; channel < output.length; channel++) {
       const inputChannel = input[channel]
       const outputChannel = output[channel]
+
       if (!inputChannel) break
       for (let i = 0; i < inputChannel.length; i++) {
         if (frequency[0] === 0) {

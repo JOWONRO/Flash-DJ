@@ -21,3 +21,18 @@ export const ringModularOptions = {
     maxValue: 20000,
   },
 }
+
+export const slicerOptions = {
+  frequency: {
+    name: 'frequency',
+    defaultValue: 0,
+    maxValue: 20,
+    minValue: 0,
+  },
+  depth: {
+    name: 'depth',
+    defaultValue: 0,
+    maxValue: 1,
+    minValue: 0,
+  },
+}

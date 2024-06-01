@@ -4,7 +4,7 @@ import useController from '../hooks/useController'
 import useNodeHandler from '../hooks/useNodeHandler'
 import { ControllerOption, NodeReturnType } from '../types'
 
-const useGainNode = (option?: ControllerOption): NodeReturnType => {
+const useGainNode = (option?: ControllerOption): NodeReturnType<GainNode> => {
   const { context, audioNode, handler } = useNodeHandler(async context =>
     context.createGain(),
   )
@@ -12,9 +12,9 @@ const useGainNode = (option?: ControllerOption): NodeReturnType => {
   const gainController = useController(option)
 
   useEffect(() => {
-    if (audioNode && gainController.value !== undefined)
-      audioNode.gain.value = gainController.value
-  }, [audioNode, gainController.value])
+    if (audioNode && context && gainController.value !== undefined)
+      audioNode.gain.setValueAtTime(gainController.value, context.currentTime)
+  }, [audioNode, context, gainController.value])
 
   return { context, audioNode, handler, controllers: [gainController] }
 }

@@ -4,7 +4,7 @@ const useUnitHandler = (params: UnitHandlerParams): UnitHandler => {
   const { initialize, connect, reset } = params
 
   const actions = {
-    getConnectFn: (connect: UnitHandlerParams['connect']) => {
+    getConnectFn: () => {
       switch (typeof connect) {
         case 'function':
           return connect
@@ -16,7 +16,7 @@ const useUnitHandler = (params: UnitHandlerParams): UnitHandler => {
           }
       }
     },
-    getResetFn: (reset: UnitHandlerParams['reset']) => {
+    getResetFn: () => {
       switch (typeof reset) {
         case 'function':
           return reset
@@ -31,9 +31,9 @@ const useUnitHandler = (params: UnitHandlerParams): UnitHandler => {
   }
 
   const unitHandler: UnitHandler = {
-    initialize: initialize,
-    connect: actions.getConnectFn(connect),
-    reset: actions.getResetFn(reset),
+    initialize,
+    connect: actions.getConnectFn(),
+    reset: actions.getResetFn(),
   }
 
   return unitHandler
