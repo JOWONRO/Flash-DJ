@@ -16,6 +16,7 @@ import useGainUnit from '@src/units/useGainUnit'
 import useLoFiUnit from '@src/units/useLoFiUnit'
 import usePannerDefaultUnit from '@src/units/usePannerDefaultUnit'
 import usePanUnit from '@src/units/usePanUnit'
+import usePhaserUnit from '@src/units/usePhaserUnit'
 import useReverbUnit from '@src/units/useReverbUnit'
 import useRingModularUnit from '@src/units/useRingModularUnit'
 import useSlicerUnit from '@src/units/useSlicerUnit'
@@ -25,6 +26,7 @@ const useUnits = () => {
   const [context, setContext] = useState<AudioContext>()
 
   const units: UnitReturnType[] = [
+    usePhaserUnit(),
     usePanUnit(),
     useTremoloUnit(),
     useSlicerUnit(),
