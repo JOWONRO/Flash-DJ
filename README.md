@@ -32,12 +32,12 @@ Units developed include:
 - Slicer
 - Pan(stereo panner)
 - Tremolo
+- Phaser
+- Chorus
 
 Units planned for development include:
 
 - Pitch Shift
-- Chorus
-- Phaser
 
 <br />
 

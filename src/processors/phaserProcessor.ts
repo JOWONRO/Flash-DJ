@@ -1,7 +1,7 @@
 import { phaserOptions } from './options'
 
 class PhaserProcessor extends AudioWorkletProcessor {
-  static get parameterDescriptors() {
+  static get parameterDescriptors(): AudioParamDescriptor[] {
     return [phaserOptions.rate, phaserOptions.depth, phaserOptions.feedback]
   }
 

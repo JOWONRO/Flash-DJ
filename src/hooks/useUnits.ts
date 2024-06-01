@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 import { UnitReturnType } from '@src/types'
+// import useChorusUnit from '@src/units/useChorusUnit'
 import useCompressorUnit from '@src/units/useCompressorUnit'
 import useDelayUnit from '@src/units/useDelayUnit'
 import useDistortionUnit from '@src/units/useDistortionUnit'
@@ -26,6 +27,7 @@ const useUnits = () => {
   const [context, setContext] = useState<AudioContext>()
 
   const units: UnitReturnType[] = [
+    // useChorusUnit(),
     usePhaserUnit(),
     usePanUnit(),
     useTremoloUnit(),
