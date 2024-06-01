@@ -24,25 +24,34 @@ const useCompressorNode = (options: CompressorNodeOptions): NodeReturnType => {
   const releaseController = useController(options.release)
 
   useEffect(() => {
-    if (audioNode && thresholdController.value !== undefined)
-      audioNode.threshold.value = thresholdController.value
-  }, [audioNode, thresholdController.value])
+    if (audioNode && context && thresholdController.value !== undefined)
+      audioNode.threshold.setValueAtTime(
+        thresholdController.value,
+        context.currentTime,
+      )
+  }, [audioNode, context, thresholdController.value])
   useEffect(() => {
-    if (audioNode && kneeController.value !== undefined)
-      audioNode.knee.value = kneeController.value
-  }, [audioNode, kneeController.value])
+    if (audioNode && context && kneeController.value !== undefined)
+      audioNode.knee.setValueAtTime(kneeController.value, context.currentTime)
+  }, [audioNode, context, kneeController.value])
   useEffect(() => {
-    if (audioNode && ratioController.value !== undefined)
-      audioNode.ratio.value = ratioController.value
-  }, [audioNode, ratioController.value])
+    if (audioNode && context && ratioController.value !== undefined)
+      audioNode.ratio.setValueAtTime(ratioController.value, context.currentTime)
+  }, [audioNode, context, ratioController.value])
   useEffect(() => {
-    if (audioNode && attackController.value !== undefined)
-      audioNode.attack.value = attackController.value
-  }, [audioNode, attackController.value])
+    if (audioNode && context && attackController.value !== undefined)
+      audioNode.attack.setValueAtTime(
+        attackController.value,
+        context.currentTime,
+      )
+  }, [audioNode, context, attackController.value])
   useEffect(() => {
-    if (audioNode && releaseController.value !== undefined)
-      audioNode.release.value = releaseController.value
-  }, [audioNode, releaseController.value])
+    if (audioNode && context && releaseController.value !== undefined)
+      audioNode.release.setValueAtTime(
+        releaseController.value,
+        context.currentTime,
+      )
+  }, [audioNode, context, releaseController.value])
 
   return {
     context,

@@ -25,17 +25,20 @@ const useFilterNode = (
   const gainController = useController(options.gain)
 
   useEffect(() => {
-    if (audioNode && frequencyController.value !== undefined)
-      audioNode.frequency.value = frequencyController.value
-  }, [audioNode, frequencyController.value])
+    if (audioNode && context && frequencyController.value !== undefined)
+      audioNode.frequency.setValueAtTime(
+        frequencyController.value,
+        context.currentTime,
+      )
+  }, [audioNode, context, frequencyController.value])
   useEffect(() => {
-    if (audioNode && gainController.value !== undefined)
-      audioNode.gain.value = gainController.value
-  }, [audioNode, gainController.value])
+    if (audioNode && context && gainController.value !== undefined)
+      audioNode.gain.setValueAtTime(gainController.value, context.currentTime)
+  }, [audioNode, context, gainController.value])
   useEffect(() => {
-    if (audioNode && qController.value !== undefined)
-      audioNode.Q.value = qController.value
-  }, [audioNode, qController.value])
+    if (audioNode && context && qController.value !== undefined)
+      audioNode.Q.setValueAtTime(qController.value, context.currentTime)
+  }, [audioNode, context, qController.value])
 
   return {
     context,
