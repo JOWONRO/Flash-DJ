@@ -30,6 +30,7 @@ Units developed include:
 - Lo-Fi
 - Ring Modulator
 - Slicer
+- Pan(stereo panner)
 
 Units planned for development include:
 
@@ -37,7 +38,6 @@ Units planned for development include:
 - Chorus
 - Phaser
 - Tremolo
-- Pan
 
 <br />
 

@@ -2,14 +2,14 @@ import { useEffect } from 'react'
 
 import useController from '@src/hooks/useController'
 import useNodeHandler from '@src/hooks/useNodeHandler'
-import { ControllerOption } from '@src/types'
+import { ControllerOption, NodeReturnType } from '@src/types'
 
 export interface SlicerNodeOptions {
   frequency?: ControllerOption
   depth?: ControllerOption
 }
 
-const useSlicerNode = (options: SlicerNodeOptions) => {
+const useSlicerNode = (options: SlicerNodeOptions): NodeReturnType => {
   const { context, audioNode, handler } = useNodeHandler(async context => {
     await context.audioWorklet.addModule('src/processors/slicerProcessor.ts')
     const slicer = new AudioWorkletNode(context, 'slicer-processor')
