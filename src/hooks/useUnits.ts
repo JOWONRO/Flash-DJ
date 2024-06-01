@@ -19,12 +19,14 @@ import usePanUnit from '@src/units/usePanUnit'
 import useReverbUnit from '@src/units/useReverbUnit'
 import useRingModularUnit from '@src/units/useRingModularUnit'
 import useSlicerUnit from '@src/units/useSlicerUnit'
+import useTremoloUnit from '@src/units/useTremoloUnit'
 
 const useUnits = () => {
   const [context, setContext] = useState<AudioContext>()
 
   const units: UnitReturnType[] = [
     usePanUnit(),
+    useTremoloUnit(),
     useSlicerUnit(),
     useRingModularUnit(),
     useLoFiUnit(),
