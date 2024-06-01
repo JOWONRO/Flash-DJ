@@ -31,13 +31,13 @@ Units developed include:
 - Ring Modulator
 - Slicer
 - Pan(stereo panner)
+- Tremolo
 
 Units planned for development include:
 
 - Pitch Shift
 - Chorus
 - Phaser
-- Tremolo
 
 <br />
 
