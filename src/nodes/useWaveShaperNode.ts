@@ -19,11 +19,11 @@ const useWaveShaperNode = (
   const controller = useController(curve.option)
 
   useEffect(() => {
-    if (audioNode && controller.value !== undefined) {
-      audioNode.curve = curve.getCurve(controller.value)
+    if (audioNode && context && controller.value !== undefined) {
+      audioNode.curve = curve.getCurve(controller.value, context.sampleRate)
       onChange?.(controller.value)
     }
-  }, [audioNode, controller.value, curve, onChange])
+  }, [audioNode, context, controller.value, curve, onChange])
 
   return { audioNode, context, controllers: [controller], handler }
 }
