@@ -12,14 +12,6 @@ const useNodeHandler = <T extends AudioNode = AudioNode>(
       setAudioNode(initializedNode)
       setContext(context)
     },
-    connectInput: (node: AudioNode) => {
-      if (!audioNode) return
-      node.connect(audioNode)
-    },
-    connectOutput: (node: AudioNode) => {
-      if (!audioNode) return
-      audioNode.connect(node)
-    },
   }
 
   return { context, audioNode, handler }

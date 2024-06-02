@@ -3,9 +3,9 @@ import useNodeHandler from './hooks/useNodeHandler'
 import useGainUnit from './units/useGainUnit'
 
 export interface ControllerOption {
-  id: string
-  min: number
-  max: number
+  id?: string
+  min?: number
+  max?: number
   step?: number
   defaultValue: number
 }
