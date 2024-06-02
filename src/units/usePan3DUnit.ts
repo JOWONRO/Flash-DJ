@@ -2,7 +2,7 @@ import useUnitHandler from '@src/hooks/useUnitHandler'
 import usePannerNode from '@src/nodes/usePannerNode'
 import { UnitType } from '@src/types'
 
-const usePannerDefaultUnit: UnitType = (id = 'panner-default-unit') => {
+const usePan3DUnit: UnitType = (id = 'panner-default-unit') => {
   const { audioNode, controllers, handler } = usePannerNode(
     'equalpower',
     'inverse',
@@ -82,4 +82,4 @@ const usePannerDefaultUnit: UnitType = (id = 'panner-default-unit') => {
   return { id, controllers: [controllers], unitHandler }
 }
 
-export default usePannerDefaultUnit
+export default usePan3DUnit

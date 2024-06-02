@@ -25,7 +25,7 @@ Units developed include:
 - Reverb
 - Delay
 - Compressor
-- Panner
+- Pan 3D(panner)
 - Distortion
 - Lo-Fi
 - Ring Modulator

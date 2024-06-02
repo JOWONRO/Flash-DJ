@@ -15,7 +15,7 @@ import useFilterNotchUnit from '@src/units/useFilterNotchUnit'
 import useFilterPeakingUnit from '@src/units/useFilterPeakingUnit'
 import useGainUnit from '@src/units/useGainUnit'
 import useLoFiUnit from '@src/units/useLoFiUnit'
-import usePannerDefaultUnit from '@src/units/usePannerDefaultUnit'
+import usePan3DUnit from '@src/units/usePan3DUnit'
 import usePanUnit from '@src/units/usePanUnit'
 import usePhaserUnit from '@src/units/usePhaserUnit'
 import useReverbUnit from '@src/units/useReverbUnit'
@@ -45,7 +45,7 @@ const useUnits = () => {
     useFilterAllpassUnit(),
     useDelayUnit(),
     useReverbUnit(),
-    usePannerDefaultUnit(),
+    usePan3DUnit(),
     useCompressorUnit(),
     useGainUnit(),
   ]
