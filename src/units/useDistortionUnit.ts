@@ -1,3 +1,5 @@
+import { useEffect } from 'react'
+
 import useUnitHandler from '@src/hooks/useUnitHandler'
 import useGainNode from '@src/nodes/useGainNode'
 import useWaveShaperNode from '@src/nodes/useWaveShaperNode'
@@ -22,11 +24,15 @@ const useDistortionUnit: UnitType = (id = 'distortion-unit') => {
     audioNode: waveShaperNode,
     controllers: waveShaperControllers,
     handler: waveShaperHandler,
-  } = useWaveShaperNode(EXAMPLE_CURVE, '4x', value => {
-    /** The formula must change each time the distortion curve changes. */
-    const gainValue = 2 / (1 + value / EXAMPLE_CURVE.option.max)
-    outputGainControllers[0].handler.onChange(gainValue)
-  })
+  } = useWaveShaperNode(EXAMPLE_CURVE, '4x')
+
+  useEffect(() => {
+    const value = waveShaperControllers[0].value
+    if (value === undefined) return
+    outputGainControllers[0].handler.onChange(
+      1 / (1 + value / EXAMPLE_CURVE.option.max),
+    )
+  }, [outputGainControllers, waveShaperControllers])
 
   const unitHandler = useUnitHandler({
     initialize: async context => {

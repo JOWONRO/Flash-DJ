@@ -8,7 +8,6 @@ import { NodeReturnType } from '@src/types'
 const useWaveShaperNode = (
   curve: DistortionCurve,
   oversample: OverSampleType,
-  onChange?: (value: number) => void,
 ): NodeReturnType => {
   const { audioNode, context, handler } = useNodeHandler(async context => {
     const waveShaper = context.createWaveShaper()
@@ -21,9 +20,8 @@ const useWaveShaperNode = (
   useEffect(() => {
     if (audioNode && context && controller.value !== undefined) {
       audioNode.curve = curve.getCurve(controller.value, context.sampleRate)
-      onChange?.(controller.value)
     }
-  }, [audioNode, context, controller.value, curve, onChange])
+  }, [audioNode, context, controller.value, curve])
 
   return { audioNode, context, controllers: [controller], handler }
 }
