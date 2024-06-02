@@ -12,17 +12,17 @@ export interface FilterNodeOptions {
 
 const useFilterNode = (
   type: BiquadFilterType,
-  options: FilterNodeOptions,
-): NodeReturnType => {
+  options?: FilterNodeOptions,
+): NodeReturnType<BiquadFilterNode> => {
   const { context, audioNode, handler } = useNodeHandler(async context => {
     const filter = context.createBiquadFilter()
     filter.type = type
     return filter
   })
 
-  const frequencyController = useController(options.frequency)
-  const qController = useController(options.q)
-  const gainController = useController(options.gain)
+  const frequencyController = useController(options?.frequency)
+  const qController = useController(options?.q)
+  const gainController = useController(options?.gain)
 
   useEffect(() => {
     if (audioNode && context && frequencyController.value !== undefined)

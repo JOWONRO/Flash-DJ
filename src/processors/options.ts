@@ -7,9 +7,3 @@ export const bitCrusherOptions = {
     maxValue: 1,
   },
 }
-
-export const phaserOptions = {
-  rate: { name: 'rate', defaultValue: 0, minValue: 0, maxValue: 10 },
-  depth: { name: 'depth', defaultValue: 0, minValue: 0, maxValue: 1 },
-  feedback: { name: 'feedback', defaultValue: 0, minValue: 0, maxValue: 1 },
-}
